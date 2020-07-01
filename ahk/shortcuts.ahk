@@ -9,7 +9,9 @@
 return
 
 ; Get the direct url of the most recently modifed image in 
-; Dropbox\images
+; Dropbox\images and put it on the clipboard for 5 seconds. 
+; Takes about 1 s to get the url (cloudbox/image.py for more
+; details)
 ^!'::
   env = C:\.dropbox\Scripts\activate
   pycommand := "from cloudbox.image import recently_modified_link; recently_modified_link()"

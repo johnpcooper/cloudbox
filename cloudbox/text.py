@@ -5,7 +5,7 @@ import re
 import pyperclip
 
 import notespy.constants
-from cloudbox import clipboard, constants, text
+from cloudbox import constants, text
 
 def raw_text(text):
     

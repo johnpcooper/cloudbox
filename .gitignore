@@ -4,3 +4,5 @@ cloudbox.sublime-workspace
 *.todo
 /test/*
 *.pytest_cache
+*.pyc
+/cloudbox/__pycache__/*

@@ -1,3 +1,8 @@
+"""
+Credit to stackoverflow user Brett Lapierre:
+https://stackoverflow.com/users/11548128/brett-lapierre
+"""
+
 from tkinter import *
 import pyautogui
 
@@ -6,6 +11,7 @@ import datetime
 from cloudbox import constants
 
 class Application():
+    
     def __init__(self, master):
         self.master = master
         self.root = self.master
@@ -15,9 +21,6 @@ class Application():
         self.start_y = None
         self.curX = None
         self.curY = None
-
-        # root.configure(background = 'red')
-        # root.attributes("-transparentcolor","red")
 
         self.root.attributes("-transparent", "blue")
         self.root.geometry('400x50+200+200')  # set new geometry

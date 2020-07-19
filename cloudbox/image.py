@@ -1,4 +1,6 @@
+from os import sys
 from tkinter import Tk
+import pyperclip
 
 import pandas as pd
 
@@ -46,10 +48,17 @@ def get_direct_link(filename="measurement_rois.png"):
     print(direct_url)
 
     return direct_url
-def load_clipboard(string):
+
+def load_clipboard_tk(string):
     """
     Add the string passed to load_clipboard
     to the system clipboard
+
+    This version of load_clipboard() uses tkinter,
+    which is less efficient than using pyperclip.
+    I'm keeping this version around because it might
+    be useful for moving image or other types of non-
+    string data.
     """
     # If this is run on cmd using AHK, the string
     # loaded to the clipboard will disappear once
@@ -63,6 +72,21 @@ def load_clipboard(string):
         root.clipboard_append(string)
         root.after(5000, root.destroy)
         root.mainloop()
+    else:
+        print("not a string")
+
+def load_clipboard(string):
+    """
+    Add the string passed to load_clipboard
+    to the system clipboard
+
+    pyperclip uses OS-respective 
+    OS commands and seems portable across
+    different systems 
+    """
+
+    if type(string) == str:
+        pyperclip.copy(string)
     else:
         print("not a string")
 

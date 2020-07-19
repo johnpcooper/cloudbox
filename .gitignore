@@ -1,1 +1,6 @@
 /cloudbox/constants.py
+cloudbox.sublime-project
+cloudbox.sublime-workspace
+*.todo
+/test/*
+*.pytest_cache

@@ -26,5 +26,20 @@ return
   env = C:\.cloudbox\Scripts\activate
   pycommand := "from cloudbox.text import write_note_from_clipboard; from time import sleep; write_note_from_clipboard(); sleep(5)"
   run, %comspec% /c %env% & python -c "%pycommand%"
+return
 
+; Copy Dropbox/text/clipboard.txt to OS clipboard
+; (clipboard.txt gets updated by Shortcuts on iOS) 
+^#C::
+  env = C:\.cloudbox\Scripts\activate
+  pycommand := "from cloudbox.text import get_dropbox_clipboard; get_dropbox_clipboard()"
+  run, %comspec% /c %env% & python -c "%pycommand%"
+return
+
+; Paste OS clipboard to Dropbox/text/clipboard.txt
+; (clipboard.txt can be gotten by Shortcuts on iOS)
+^#V::
+  env = C:\.cloudbox\Scripts\activate
+  pycommand := "from cloudbox.text import set_dropbox_clipboard; set_dropbox_clipboard()"
+  run, %comspec% /c %env% & python -c "%pycommand%"
 return

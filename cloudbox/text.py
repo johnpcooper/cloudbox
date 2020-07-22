@@ -5,7 +5,8 @@ import re
 import pyperclip
 
 import notespy.constants
-from cloudbox import constants, text
+from cloudbox import constants
+from cloudbox.image import load_clipboard
 
 def raw_text(text):
     
@@ -100,3 +101,37 @@ def write_note_from_clipboard(**kwargs):
 def test_write_note_from_clipboard():
     
     write_note_from_clipboard(text=example_icloud_note())
+
+def get_dropbox_clipboard(copy=True):
+    """
+    Return the text found at Dropbox/shortcuts/clipboard.txt
+    and, if copy: load to clipboard
+    """
+    filepath = os.path.join(constants.local_text_path, 'clipboard.txt')
+    if os.path.exists(filepath):        
+        with open(filepath, 'r', encoding='utf8') as file:
+            clipboard_text = file.read()
+    else:
+        clipboard_text = ''
+        print(f"No file at {filepath}")
+
+    if copy:
+        pyperclip.copy(clipboard_text)
+
+    return clipboard_text
+
+def set_dropbox_clipboard():
+    """
+    Paste contents of desktop OS into 
+    the file at <constants.local_text_path>/clipboard.txt
+
+    Return nothing
+    """
+    clipboard_text = pyperclip.paste()
+
+    filepath = os.path.join(constants.local_text_path, 'clipboard.txt')
+    if os.path.exists(filepath):        
+        with open(filepath, 'w', encoding='utf8') as file:
+            file.write(clipboard_text)
+    else:
+        print(f"No file at {filepath}")

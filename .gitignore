@@ -1,4 +1,4 @@
-/cloudbox/constants.py
+/cloudbox/secrets.py
 cloudbox.sublime-project
 cloudbox.sublime-workspace
 *.todo

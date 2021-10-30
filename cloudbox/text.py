@@ -4,7 +4,6 @@ import re
 
 import pyperclip
 
-import notespy.constants
 from cloudbox import constants
 from cloudbox.image import load_clipboard
 
@@ -12,7 +11,7 @@ def raw_text(text):
     
     if type(text) == str:
         text = text.replace('\\', '/')
-        text = text.replace('\n', ' ')
+        text = text.replace('\n', ' \n')
     else:
         text = None
         print("Must be string")
@@ -21,7 +20,7 @@ def raw_text(text):
         
 def example_icloud_note():
     
-    dailynotesdir = notespy.constants.dailydir
+    dailynotesdir = constants.dailydir
     with open(os.path.join(dailynotesdir, r"example_icloud.txt"), 'r') as file:
         # Replace \ characters in path names written in the text
         # with '/', so it doesn't need to be escaped    
@@ -51,7 +50,7 @@ def find_date(text):
 
 def new_note_path(found_dates, words):
     
-    dailynotesdir = notespy.constants.dailydir
+    dailynotesdir = constants.dailydir
 
     if len(found_dates) == 1:  
         
@@ -83,9 +82,10 @@ def new_note_path(found_dates, words):
 def write_note_from_clipboard(**kwargs):
 
     text = kwargs.get('text', raw_text(pyperclip.paste()))
+    # text = text.replace('  ', ' \n')
     words = text.split(' ')
     
-    dailynotesdir = notespy.constants.dailydir
+    dailynotesdir = constants.dailydir
     found_dates = find_date(text)
     writepath = new_note_path(found_dates, words)
 

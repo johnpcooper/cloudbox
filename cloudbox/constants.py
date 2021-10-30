@@ -3,8 +3,9 @@ from cloudbox import secrets
 
 token = secrets.token
 images_path = '/images/'
-local_images_path = "C:/Users/John Cooper/Dropbox/images/"
-local_text_path = "C:/Users/John Cooper/Dropbox/text/"
+local_images_path = "C:/Users/johnp/Dropbox/images/"
+local_text_path = "C:/Users/johnp/Dropbox/text/"
+dailydir = "C:/User/johnp/Box/notes/text/weekly"
 
 def package_path(**kwargs):
     """
